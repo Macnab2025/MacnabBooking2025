@@ -27,7 +27,7 @@
       margin: 20px 0;
       display: none;
     }
-    #logo {
+    #logo, #secondImage {
       max-width: 200px;
       width: 100%;
       height: auto;
@@ -37,8 +37,11 @@
   </style>
 </head>
 <body>
-  <!-- Logo -->
+  <!-- First Logo -->
   <img id="logo" src="https://www.dropbox.com/scl/fi/f4d53efotomj1qvdmpc4q/REVISED-FINAL-LOGO-MARCH-2022-Size-Edit.jpg?rlkey=x0s7fey2igs28m0eafp33ewdp&st=e621gy53&raw=1" alt="Logo">
+
+  <!-- Second Image -->
+  <img id="secondImage" src="https://www.dropbox.com/scl/fi/awmsq0rdmcl2t9u8hhq4q/Macnab-Theme-Night-2025-Intro-3.png?rlkey=478o80f53h0g7385c996jr77q&raw=1" alt="Intro Image">
 
   <div id="locked">⏳ Booking will open soon...</div>
   <div id="countdown"></div>
@@ -57,7 +60,7 @@
         document.getElementById("locked").style.display = "none";
         document.getElementById("countdown").style.display = "none";
         document.getElementById("openMsg").style.display = "block";
-        // Redirect to NearTail URL after 2 seconds so user sees message
+        // Redirect to NearTail URL after 2 seconds
         setTimeout(() => {
           window.location.href = redirectURL;
         }, 2000);
@@ -78,3 +81,4 @@
   </script>
 </body>
 </html>
+
