@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Unlock</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #locked {
+      font-size: 1.5rem;
+      color: #555;
+    }
+    #countdown {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #d9534f;
+    }
+    #openMsg {
+      font-size: 1.8rem;
+      color: green;
+      font-weight: bold;
+      margin: 20px 0;
+      display: none;
+    }
+    #logo {
+      max-width: 200px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <img id="logo" src="https://www.dropbox.com/scl/fi/f4d53efotomj1qvdmpc4q/REVISED-FINAL-LOGO-MARCH-2022-Size-Edit.jpg?rlkey=x0s7fey2igs28m0eafp33ewdp&st=e621gy53&raw=1" alt="Logo">
+
+  <div id="locked">⏳ Booking will open soon...</div>
+  <div id="countdown"></div>
+  <div id="openMsg">✅ Booking is now Open</div>
+
+  <script>
+    // Set unlock date & time (Year, Month-1, Day, Hour, Minute)
+    const unlockDate = new Date(2025, 8, 25, 0, 1, 0); // Sept 25, 2025, 00:01 AM
+    const redirectURL = "https://near.tl/sm/KqbM-u9tt";
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = unlockDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("locked").style.display = "none";
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("openMsg").style.display = "block";
+        // Redirect to NearTail URL after 2 seconds so user sees message
+        setTimeout(() => {
+          window.location.href = redirectURL;
+        }, 2000);
+      } else {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").textContent =
+          `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        setTimeout(updateCountdown, 1000);
+      }
+    }
+
+    updateCountdown();
+  </script>
+</body>
+</html>
